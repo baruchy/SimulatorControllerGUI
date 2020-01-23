@@ -1,5 +1,6 @@
 package model;
 
+import command.CloseDataServerCommand;
 import command.ConnectCommand;
 import command.OpenDataServerCommand;
 import connect.SimulatorClient;
@@ -47,8 +48,12 @@ public class Model extends Observable {
 		connectedToSimulator = true;
 	}
 	
-	public void openDataServerSimulator(String ip, String port) {
-		new OpenDataServerCommand().doCommand(Arrays.asList(ip, port));
+	public void openDataServerSimulator(String port, String pace) {
+		new OpenDataServerCommand().doCommand(Arrays.asList(port, pace));
+	}
+	
+	public void closeDataServerSimulator() {
+		new CloseDataServerCommand().doCommand(null);
 	}
 
 	public void runScript(String[] lines) {

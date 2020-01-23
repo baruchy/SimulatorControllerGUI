@@ -25,11 +25,14 @@ public class ViewModel extends Observable {
 		joyStickX.addListener((o, old, nw) -> model.setAileron(calculateJoystickValue(nw.doubleValue())));
 		joyStickY.addListener((o, old, nw) -> model.setElevator(calculateJoystickValue(-nw.doubleValue())));
 		
-		model.openDataServerSimulator("6401", "10");
 	}
 
-	public void connectToSimVM(String ip, String port) {
+	public void connectToSimulator(String ip, String port) {
 		model.connectToSimulator(ip, port);
+	}
+	
+	public void disconnect() {
+		model.closeDataServerSimulator();
 	}
 
 	private double calculateJoystickValue(double value) {
@@ -39,5 +42,10 @@ public class ViewModel extends Observable {
 
 	public void runScript(String script) {
 		model.runScript(script.split("\n"));
+	}
+	
+	public void openDataServer(String port, String pace) {
+//		model.openDataServerSimulator("6402", "10");
+		model.openDataServerSimulator(port, pace);
 	}
 }

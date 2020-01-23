@@ -82,7 +82,7 @@ public class MainWindowController {
 			} else if (!StringUtils.isDouble(port)) {
 				popuper("Please enter a valid port number");
 			} else {
-				viewModel.connectToSimVM(ip, port);
+				viewModel.connectToSimulator(ip, port);
 				popup.close();
 				System.out.println("connected to FlightGear...");
 				isConnected = true;

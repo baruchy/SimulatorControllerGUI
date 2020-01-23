@@ -9,6 +9,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 
 public class Main extends Application {
+	public static String dataServerPort;
+	public static String dataServerPace;
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -20,6 +22,7 @@ public class Main extends Application {
 			Scene scene = new Scene(root, 800, 500);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
+			primaryStage.setOnCloseRequest((e) -> vm.disconnect());
 			primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -27,6 +30,8 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) {
+		dataServerPort = args[0];
+		dataServerPace = args[1];
 		launch(args);
 	}
 }
