@@ -24,6 +24,7 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.setOnCloseRequest((e) -> vm.disconnect());
 			primaryStage.show();
+			vm.openDataServer(dataServerPort, dataServerPace);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
