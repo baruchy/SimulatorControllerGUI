@@ -1,7 +1,9 @@
 package model;
 
 import command.ConnectCommand;
+import command.OpenDataServerCommand;
 import connect.SimulatorClient;
+import interprter.Interpreter;
 import java.util.Arrays;
 import java.util.Observable;
 
@@ -43,5 +45,14 @@ public class Model extends Observable {
 	public void connectToSimulator(String ip, String port) {
 		new ConnectCommand().doCommand(Arrays.asList(ip, port));
 		connectedToSimulator = true;
+	}
+	
+	public void openDataServerSimulator(String ip, String port) {
+		new OpenDataServerCommand().doCommand(Arrays.asList(ip, port));
+	}
+
+	public void runScript(String[] lines) {
+		new Thread(() -> Interpreter.interpret(lines)).start();;
+        System.out.println("Script sent to interpreter....");
 	}
 }

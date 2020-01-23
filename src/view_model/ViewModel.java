@@ -24,6 +24,8 @@ public class ViewModel extends Observable {
 		rudder.addListener((o, old, nw) -> model.setRudder(nw.doubleValue()));
 		joyStickX.addListener((o, old, nw) -> model.setAileron(calculateJoystickValue(nw.doubleValue())));
 		joyStickY.addListener((o, old, nw) -> model.setElevator(calculateJoystickValue(-nw.doubleValue())));
+		
+		model.openDataServerSimulator("6401", "10");
 	}
 
 	public void connectToSimVM(String ip, String port) {
@@ -33,5 +35,9 @@ public class ViewModel extends Observable {
 	private double calculateJoystickValue(double value) {
 		double newVal = value * 1.5875D / 100D;
 		return (newVal > 1) ? 1 : (newVal < -1) ? -1 : newVal;
+	}
+
+	public void runScript(String script) {
+		model.runScript(script.split("\n"));
 	}
 }
